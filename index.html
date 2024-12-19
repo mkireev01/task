@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лендинг</title>
+  <style>
+    /* Основные стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: white;
+      background: #000; /* Черный фон */
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    h1, h2, h3, p {
+      margin-bottom: 20px;
+    }
+
+    /* Шапка */
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      position: fixed; /* Фиксированная позиция */
+      top: 0;
+      left: 0;
+      width: 100%; /* Ширина на весь экран */
+      z-index: 1000;
+    }
+    .brand {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      color: #4caf50; /* Зеленый акцент */
+      position: relative; /* Оставляем на месте */
+      z-index: 10; /* Чтобы логотип всегда был сверху */
+    }
+    .nav-links {
+      position: absolute; /* Абсолютное позиционирование */
+      left: 50%; /* Сдвиг к центру */
+      transform: translateX(-50%); /* Центрирование */
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #4caf50;
+    }
+
+    /* Заголовочный экран */
+    header {
+      text-align: center;
+      padding: 150px 20px;
+      background: url('images/photo.jpg') no-repeat center center/cover; /* Фоновая картинка */
+      background-size: cover;
+      color: white;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      height: 100vh; /* Высота на весь экран */
+      position: relative;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Полупрозрачный слой для улучшения читаемости */
+      z-index: 1;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Тень для текста */
+    }
+    header p {
+      font-size: 1.8rem;
+      font-weight: 300;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Тень для текста */
+    }
+    .header-text {
+  margin-bottom: 30px; /* Отступ под текстом */
+}
+
+.video-container {
+  display: flex;
+  justify-content: center; /* Центрируем видео */
+}
+
+    /* УТП */
+    .utp {
+      padding: 100px 20px; /* Увеличена высота */
+      text-align: center;
+    }
+    .utp h2 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #4caf50, #4caf50); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .utp .features {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .feature {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 50px; /* Увеличен отступ */
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 350px;
+    }
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
+    }
+    .feature img {
+  width: 120px; /* Ширина изображения */
+  height: 120px; /* Высота изображения */
+  margin-bottom: 20px; /* Отступ снизу */
+  object-fit: cover; /* Сохраняем пропорции */
+  border-radius: 50%; /* Округляем изображения */
+  border: 2px solid #4caf50; /* Зеленая рамка */
+}
+    .feature h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .feature p {
+      font-size: 1.2rem;
+    }
+
+    /* Отзывы */
+    .reviews {
+      padding: 150px 20px; /* Увеличена высота */
+      text-align: center;
+      background: #ffffff; /* Однородный темный фон */
+    }
+    .reviews h2 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #4caf50, #4caf50); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .reviews .review-list {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .review {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 50px; /* Увеличен отступ */
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+      max-width: 350px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .review:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
+    }
+    .review img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid #4caf50;
+    }
+    .review h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .review p {
+      font-size: 1.2rem;
+    }
+
+    /* Призыв к действию */
+    .cta {
+      text-align: center;
+      padding: 150px 20px;
+      background: url('images/photo2.jpg') no-repeat center center/cover; /* Фоновая картинка */
+      background-size: cover;
+      color: white;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      height: 100vh; /* Высота на весь экран */
+      position: relative;
+    }
+    .сta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Полупрозрачный слой для улучшения читаемости */
+      z-index: 1;
+    }
+    .cta h2 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #4caf50, #4caf50); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cta p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    .button {
+      display: inline-block;
+      padding: 20px 40px;
+      background: linear-gradient(to right, #4caf50, #81c784);
+      color: black;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Футер */
+    footer {
+      background: black;
+      color: white;
+      padding: 30px 50px;
+      text-align: center; /* Центрируем текст */
+      display: flex; /* Используем flexbox для универсального центрирования */
+      justify-content: center; /* Горизонтальное выравнивание */
+      align-items: center; /* Вертикальное выравнивание */
+      flex-direction: column; /* Если добавится новый текст, он будет в столбик */
+    }
+    footer p {
+      font-size: 1rem;
+      margin: 0; /* Убираем лишние отступы */
+    }
+    footer a {
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 15px;
+      }
+      .features, .review-list {
+        flex-direction: column;
+        gap: 30px;
+      }
+      header {
+        padding: 100px 20px;
+      }
+      .cta {
+        padding: 100px 20px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка -->
+  <div class="navbar">
+    <div class="brand">DreamCraft</div>
+    <div class="nav-links">
+      <a href="#header">Компания</a>
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </div>
+
+  <!-- Заголовочный экран -->
+  <header id="header">
+    <h1>Твоя мечта начинается здесь</h1>
+    <p class="header-text">Мы создаем решения, которые помогут твоему бизнесу выделиться и добиться успеха. Просто сделай первый шаг!</p>
+    <div class="video-container">
+      <video width="800" height="450" controls autoplay muted>
+        <source src="videos/video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает воспроизведение видео.
+      </video>      
+    </div>
+  </header>
+  
+
+  <!-- Уникальное торговое предложение -->
+  <section id="services" class="utp">
+    <h2>Почему выбирают нас?</h2>
+    <div class="features">
+      <div class="feature">
+        <img src="images/31.jpg" alt="Индивидуальный подход" />
+        <h3>Индивидуальный подход</h3>
+        <p>Каждое решение разрабатывается специально под вас. Мы внимательно изучаем ваши нужды, чтобы создать уникальный проект, который действительно работает на вас.</p>
+      </div>
+      <div class="feature">
+        <img src="images/32.jpg" alt="Высокое качество" />
+        <h3>Высокое качество</h3>
+        <p>Мы тщательно тестируем каждый этап разработки. Наша команда использует передовые технологии и лучшие практики, чтобы гарантировать безупречный результат.</p>
+      </div>
+      <div class="feature">
+        <img src="images/33.jpg" alt="Доступные цены" />
+        <h3>Доступные цены</h3>
+        <p>Мы доказываем, что качественные решения могут быть доступными. Наши цены адаптированы под любой бюджет, без ущерба для качества.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section id="reviews" class="reviews">
+    <h2>Отзывы наших клиентов</h2>
+    <div class="review-list">
+      <div class="review">
+        <img src="images/14.jpg" alt="Фото клиента" />
+        <h3>Мария Иванова</h3>
+        <p>"Суперкоманда! Все сделано идеально и в срок. Я в восторге! Ребята учли все мои пожелания и даже сделали больше, чем я ожидала. Теперь мой проект выглядит невероятно профессионально."
+        </p>
+      </div>
+      <div class="review">
+        <img src="images/1.jpg" alt="Фото клиента" />
+        <h3>Иван Петров</h3>
+        <p>"Работа выполнена на высшем уровне. Рекомендую всем! DreamCraft - это команда, которая действительно знает, что делает. Буду обращаться к ним снова."</p>
+      </div>
+      <div class="review">
+        <img src="images/3.jpg" alt="Фото клиента" />
+        <h3>Анна Смирнова</h3>
+        <p>"Результат превзошел все ожидания. Спасибо за профессионализм! Моему бизнесу это принесло новые возможности, а процесс сотрудничества был максимально комфортным."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Призыв к действию -->
+  <section id="contact" class="cta">
+    <h2>Готовы начать?</h2>
+    <p>Свяжитесь с нами прямо сейчас и получите бесплатную консультацию!</p>
+    <a href="#contact" class="button">Связаться с нами</a>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <p>&copy; 2024 DreamCraft. Все права защищены. <a href="#about">Политика конфиденциальности</a></p>
+  </footer>
+</body>
+</html>
